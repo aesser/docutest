@@ -1,33 +1,43 @@
 
 # Playground to run docusaurus in a container
 
-Based on https://www.knowledgehut.com/blog/web-development/how-to-dockerize-react-app
-
+Based on https://www.knowledgehut.com/blog/web-development/how-to-dockerize-react-app, 
+but using an alpine image instead
 
 
 ## Environment
 
 Running Rancher Desktop on Windows 11. 
 
-Issue with `` nerdctl compose ``
+### Build and run
 
-https://github.com/rancher-sandbox/rancher-desktop/issues/1993
-
-
-Based on workaroung I tried to set .wslconfig in user directory, but that didn't seem to help
+Using ``nerdctl build / run`` is working
 
 ````
+nerdctl build -t docutest:v1.0 .
+nerdctl run -it --rm -p 8080:80 docutest:v1.0
+````
 
+### Compose
+
+Using the ``docker-compose.yml`` isn't working due to an issue with ``nerdctl compose`` on Windows 11 
+(https://github.com/rancher-sandbox/rancher-desktop/issues/1993)
+
+
+Based on workaround I added a .wslconfig in user directory with the expected parameter, but that didn't seem to help
+
+````
 [wsl2]
 guiApplications=false
 
-
 ````
 
 
 
 
 
+---
+Docusaurus readme from here:
 
 # Website
 
